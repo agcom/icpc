@@ -83,3 +83,9 @@ See [`./../src/C.java`](./../src/C.java)
 ## Over-engineering
 
 > Hard-coded adjacency list...
+
+## TODO
+
+- Recover phase proof
+- Pattern finding approach
+- ChatGPT suggestion follow-up

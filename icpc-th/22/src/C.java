@@ -47,8 +47,6 @@ public final class C {
 			}
 		}
 		
-		System.out.println(Arrays.stream(adjacency).mapToLong(Collection::size).sum());
-		
 		// Init asSorted
 		asSorted = Arrays.copyOf(as, as.length);
 		Arrays.sort(as);
