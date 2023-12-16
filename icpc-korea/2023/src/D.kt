@@ -1,8 +1,8 @@
 fun main() {
-	val n = readln().toInt()
-	val it = readln().asSequence()
+	readln() // Ignore n.
+	val it = readln()
 		.filter { it != ' ' }
-		.toCollection(ArrayList(n / 2 + 1)).listIterator()
+		.toList().listIterator()
 	
 	val ans = it.parseAndEvalBasicFraction()?.toRelativelyPrime() ?: -1
 	

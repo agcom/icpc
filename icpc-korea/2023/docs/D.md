@@ -103,4 +103,5 @@ private fun gcd(a: Long, b: Long): Long = if (b == 0L) a else gcd(b, a % b)
 
 - The `gcd` function can be implemented iteratively; thanks to Kotlin, that can happen automatically by adding the `tailrec` keyword to the function signature.
 - There is no need to make all rational numbers relatively prime; thanks to the test cases that would not cause overflow, just make the final rational number relatively prime (renamed `RelativelyPrimeRationalNumber` to `RationalNumber`).
-- Make use of the `n` input to acquire a big enough input buffer.
+- Make use of the `n` input to acquire a big enough input buffer (not implemented in the solution code).
+- As `char` type is 32 bytes per each in JVM, use a more compact primitive data type such as `byte` instead (decode the input in ASCII and save in a byte array; not implemented in the solution code).
