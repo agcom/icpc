@@ -14,7 +14,7 @@ Then, evaluate the expression to a rational number as defined (`(a b c)` = $a + 
 
 ## Think
 
-Implement the logic for adding and dividing rational numbers; then, parse and evaluate by writing a simple recursive descent parser. Observe that $\frac{a}{b} + \frac{c}{d} = \frac{a \times lcm(b, d) + c \times lcm(b, d)}{lcm(b, d)}$, and $\frac{a}{b} / \frac{c}{d} = \frac{a \times d}{b \times c}$. Also, to make two numbers relatively prime to each other, continuously divide them to their greatest common divisor (GCD) till their GCD becomes 1.
+Implement the logic for adding and dividing rational numbers; then, parse and evaluate by writing a simple recursive descent parser. Observe that $\frac{a}{b} + \frac{c}{d} = \frac{a \times lcm(b, d) + c \times lcm(b, d)}{lcm(b, d)}$, and $\frac{a}{b} / \frac{c}{d} = \frac{a \times d}{b \times c}$. Also, to make two numbers relatively prime to each other, divide them to their greatest common divisor (GCD). The time complexity of this solution would be $O(n)$ if GCD computation is considered $O(1)$ as it is pretty fast even for the largest possible numbers.
 
 ## Code
 
@@ -70,21 +70,10 @@ private class RelativelyPrimeRationalNumber(numerator: Long, denominator: Long =
 	val denominator: Long
 	
 	init {
-		@Suppress("NAME_SHADOWING") var numerator = numerator
-		@Suppress("NAME_SHADOWING") var denominator = denominator
-		
-		// Make them relatively prime if they are not already.
-		while (true) {
-			val numDenomGcd = gcd(numerator, denominator)
-			if (numDenomGcd == 1L) break
-			else {
-				numerator /= numDenomGcd
-				denominator /= numDenomGcd
-			}
-		}
-		
-		this.numerator = numerator
-		this.denominator = denominator
+		// Make sure they are relatively prime.
+		val numDenomGcd = gcd(numerator, denominator)
+		this.numerator = numerator / numDenomGcd
+		this.denominator = denominator / numDenomGcd
 	}
 	
 	infix operator fun div(other: RelativelyPrimeRationalNumber) = RelativelyPrimeRationalNumber(

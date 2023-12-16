@@ -10,19 +10,8 @@ fun main() {
 }
 
 private fun RationalNumber.toRelativelyPrime(): RationalNumber {
-	var numerator = numerator
-	var denominator = denominator
-	
-	while (true) {
-		val numDenomGcd = gcd(numerator, denominator)
-		if (numDenomGcd == 1L) break
-		else {
-			numerator /= numDenomGcd
-			denominator /= numDenomGcd
-		}
-	}
-	
-	return RationalNumber(numerator, denominator)
+	val numDenomGcd = gcd(numerator, denominator)
+	return RationalNumber(numerator / numDenomGcd, denominator / numDenomGcd)
 }
 
 private fun ListIterator<Char>.parseAndEvalBasicFraction(): RationalNumber? {
