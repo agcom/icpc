@@ -37,19 +37,18 @@ private fun ListIterator<Char>.parseAndEvalBasicFraction(): RelativelyPrimeRatio
 		else -> return null
 	}
 	
-	fun parseAndEvalBasicFractionPart(): RelativelyPrimeRationalNumber? =
-		nextOrNull().let {
-			when {
-				it == '(' -> {
-					// Nested basic fraction.
-					previous()
-					parseAndEvalBasicFraction()
-				}
-				
-				it != null && it.isDigit() -> RelativelyPrimeRationalNumber(it.digitToInt().toLong())
-				else -> return null
+	fun parseAndEvalBasicFractionPart(): RelativelyPrimeRationalNumber? = nextOrNull().let {
+		when {
+			it == '(' -> {
+				// Nested basic fraction.
+				previous()
+				parseAndEvalBasicFraction()
 			}
+			
+			it != null && it.isDigit() -> RelativelyPrimeRationalNumber(it.digitToInt().toLong())
+			else -> return null
 		}
+	}
 	
 	val a = parseAndEvalBasicFractionPart() ?: return null
 	val b = parseAndEvalBasicFractionPart() ?: return null

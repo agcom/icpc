@@ -32,19 +32,18 @@ private fun ListIterator<Char>.parseAndEvalBasicFraction(): RationalNumber? {
 		else -> return null
 	}
 	
-	fun parseAndEvalBasicFractionPart(): RationalNumber? =
-		nextOrNull().let {
-			when {
-				it == '(' -> {
-					// Nested basic fraction.
-					previous()
-					parseAndEvalBasicFraction()
-				}
-				
-				it != null && it.isDigit() -> RationalNumber(it.digitToInt().toLong())
-				else -> return null
+	fun parseAndEvalBasicFractionPart(): RationalNumber? = nextOrNull().let {
+		when {
+			it == '(' -> {
+				// Nested basic fraction.
+				previous()
+				parseAndEvalBasicFraction()
 			}
+			
+			it != null && it.isDigit() -> RationalNumber(it.digitToInt().toLong())
+			else -> return null
 		}
+	}
 	
 	val a = parseAndEvalBasicFractionPart() ?: return null
 	val b = parseAndEvalBasicFractionPart() ?: return null
