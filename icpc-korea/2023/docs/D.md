@@ -95,6 +95,8 @@ private class RelativelyPrimeRationalNumber(numerator: Long, denominator: Long =
 private fun lcm(a: Long, b: Long) = (a * b) / gcd(a, b)
 
 private fun gcd(a: Long, b: Long): Long = if (b == 0L) a else gcd(b, a % b)
+
+// Judged with Kotlin 1.7.21.
 ```
 
 ## Over-engineering
